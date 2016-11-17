@@ -20,7 +20,7 @@ class App extends React.Component {
           <VideoPlayer video={exampleVideoData[0]} />
         </div>
         <div className="col-md-5">
-          <VideoList onMouseClick={this.onMouseClick} videos={exampleVideoData} playing={this.state.currentSong}/>          
+          <VideoList onMouseClick={this.onMouseClick.bind(this)} videos={exampleVideoData} playing={this.state.currentSong}/>          
         </div>
       </div>
     );
