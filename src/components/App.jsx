@@ -1,12 +1,15 @@
 class App extends React.Component {
-  constructor() {
+  constructor(props) {
+    super(props);
     this.state = {
-      currentVideo: exampleVideoData[0]
+      currentSong: true
     };
   }
 
-  onMouseClick() {
-    this.state.currentVideo;
+  onMouseClick (e) {
+    this.setState({
+      currentSong: false
+    }); 
   }
 
   render () {
@@ -16,8 +19,8 @@ class App extends React.Component {
         <div className="col-md-7">
           <VideoPlayer video={exampleVideoData[0]} />
         </div>
-        <div className="col-md-5" onClick={this.onMouseClick.bind(this)}>
-          <VideoList videos={exampleVideoData} />          
+        <div className="col-md-5">
+          <VideoList onMouseClick={this.onMouseClick} videos={exampleVideoData} playing={this.state.currentSong}/>          
         </div>
       </div>
     );
