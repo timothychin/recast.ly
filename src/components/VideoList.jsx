@@ -1,17 +1,17 @@
 // import exampleVideoData;
 
 var VideoList = (props) => {
-  const videoItems = props.videos.map(video => 
+  const videoEntries = props.videos.map(video => 
     <VideoListEntry onVideoSelect={props.onVideoSelect} 
     key={video.etag}    
     video={video}/>
-  )
+  );
 
   return (
   <div className="video-list media">
-    {videoItems}
+    {videoEntries}
   </div>
-  )
+  );
 };
 
 
