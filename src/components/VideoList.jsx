@@ -1,10 +1,18 @@
 // import exampleVideoData;
 
-var VideoList = (props) => (
+var VideoList = (props) => {
+  const videoItems = props.videos.map(video => 
+    <VideoListEntry onVideoSelect={props.onVideoSelect} 
+    key={video.etag}    
+    video={video}/>
+  )
+
+  return (
   <div className="video-list media">
-    {props.videos.map(video => <VideoListEntry onMouseClick={props.onMouseClick} video={video}/>)}    
+    {videoItems}
   </div>
-);
+  )
+};
 
 
 

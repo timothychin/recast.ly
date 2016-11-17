@@ -2,25 +2,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSong: true
+      selectedVideo: exampleVideoData[0]
     };
   }
+  // e is the video being selected
 
-  onMouseClick (e) {
-    this.setState({
-      currentSong: false
-    }); 
-  }
 
   render () {
     return (
       <div>
         <Nav />
         <div className="col-md-7">
-          <VideoPlayer video={exampleVideoData[0]} />
+          <VideoPlayer video={this.state.selectedVideo} />
         </div>
         <div className="col-md-5">
-          <VideoList onMouseClick={this.onMouseClick.bind(this)} videos={exampleVideoData} playing={this.state.currentSong}/>          
+          <VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo})} videos={exampleVideoData} />          
         </div>
       </div>
     );
