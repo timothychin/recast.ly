@@ -39,7 +39,7 @@ class App extends React.Component {
       this.setState({      
         videoList: videos
       });
-    }).bind(this); 
+    }); 
   }
   
   
