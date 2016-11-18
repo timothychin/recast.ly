@@ -1,20 +1,19 @@
 var searchYouTube = (options, callback) => {
   // TODO
   $.ajax({
-    url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=cats&type=video&videoEmbeddable=true&key={AIzaSyADc6ECazReq64E7Nk6nzAMEsXmbMClyII}', // CREATE HELPER TO MAKE THIS WORK
+    url: 'https://www.googleapis.com/youtube/v3/search', 
     type: 'GET',
-    data: {
-      key: options.key,
+    data: {      
+      key: window.YOUTUBE_API_KEY,
       q: options.q,
-      maxResults: options.maxResult
+      maxResults: options.maxResults,
+      part: 'snippet',
+      type: 'video'
     }, 
-    // key: window.YOUTUBE_API_KEY,
-    // q: options.q,
-    // maxResults: options.maxResults,
     success: function(data) {
-      // reset the state from the App view  
-      console.log('HELLOOOO');
-      return data;
+      // reset the state from the App view
+      console.log('Succeeds'); 
+      return callback(data.items);
     }
   });
 };

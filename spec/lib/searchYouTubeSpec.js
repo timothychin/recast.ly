@@ -56,9 +56,9 @@ describe('searchYouTube', function() {
   });
 
   it('should accept `key`, `query`, and `max` options and send them in GET request', function() {
-    searchYouTube({ key: 'AIzaSyADc6ECazReq64E7Nk6nzAMEsXmbMClyII', q: 'cats', maxResults: 10 }, () => {});
+    searchYouTube({ key: window.YOUTUBE_API_KEY, q: 'cats', maxResults: 10 }, () => {});
     var params = getURLSearchParams(requests[0].url);
-    expect(params.key).to.equal('AIzaSyADc6ECazReq64E7Nk6nzAMEsXmbMClyII');
+    expect(params.key).to.equal(window.YOUTUBE_API_KEY);
     expect(params.q).to.equal('cats');
     expect(params.maxResults).to.equal('10');
   });
@@ -69,7 +69,7 @@ describe('searchYouTube', function() {
     var options = {
       key: window.YOUTUBE_API_KEY,
       q: 'react',
-      maxResults: 5
+      maxResults: '5'
     };
 
     // We want this test to make a real AJAX request
