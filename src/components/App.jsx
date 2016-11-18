@@ -2,8 +2,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videoList: [],
-      selectedVideo: null
+      videoList: exampleVideoData,
+      selectedVideo: exampleVideoData[0]
     };
   // e is the video being selected
   // onVideoSelect () {
@@ -12,13 +12,13 @@ class App extends React.Component {
   }
   
   componentDidMount () {
-    console.log(props);
-    var result = this.props.searchYouTube({key: window.YOUTUBE_API_KEY, q: 'cats', maxResults: 5}, i => i);  
-    var currentVideo = result[0];
-    this.setState({      
-      videoList: result,
-      selectedVideo: result[0]
-    });
+    // what to do with this props 
+    this.props.searchYouTube({key: window.YOUTUBE_API_KEY, q: 'rick-astley', maxResults: 5}, (video) => {
+      this.setState({      
+        videoList: video,
+        selectedVideo: video[0]
+      });
+    }); 
   }
   
 
@@ -26,7 +26,6 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        {console.log(props)}
         <Nav />
         <div className="col-md-7">
           <VideoPlayer video={this.state.selectedVideo} />

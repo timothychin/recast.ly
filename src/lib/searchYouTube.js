@@ -12,7 +12,6 @@ var searchYouTube = (options, callback) => {
     }, 
     success: function(data) {
       // reset the state from the App view
-      console.log('Succeeds'); 
       return callback(data.items);
     }
   });
