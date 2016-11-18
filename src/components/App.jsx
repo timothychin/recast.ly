@@ -3,8 +3,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       videoList: exampleVideoData,
-      selectedVideo: exampleVideoData[0]
+      selectedVideo: exampleVideoData[0],
+      query: 'cats'
     };
+    this.onVideoSearch = this.onVideoSearch.bind(this);
   // e is the video being selected
   // onVideoSelect () {
   //   this.setState({selectedVideo})
@@ -13,20 +15,40 @@ class App extends React.Component {
   
   componentDidMount () {
     // what to do with this props 
-    this.props.searchYouTube({key: window.YOUTUBE_API_KEY, q: 'rick-astley', maxResults: 5}, (video) => {
+    var options = {
+      key: window.YOUTUBE_API_KEY, 
+      q: 'cats', 
+      maxResults: 5
+    };
+
+    this.props.searchYouTube(options, (videos) => {
       this.setState({      
-        videoList: video,
-        selectedVideo: video[0]
+        videoList: videos,
+        selectedVideo: videos[0]
       });
     }); 
   }
+  
+  onVideoSearch (query) {
+    this.props.searchYouTube({
+      key: window.YOUTUBE_API_KEY, 
+      q: query, 
+      maxResults: 5
+    }, 
+    (videos) => {
+      this.setState({      
+        videoList: videos
+      });
+    }).bind(this); 
+  }
+  
   
 
 
   render () {
     return (
       <div>
-        <Nav />
+        <Nav onVideoSearch={this.onVideoSearch}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.selectedVideo} />
         </div>
